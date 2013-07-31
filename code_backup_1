@@ -1,0 +1,52 @@
+int ballSize = 20;
+float ballX = 0;
+float ballY = 0;
+float ballSpeed = 5;
+boolean xToggle = false;
+boolean yToggle = false;
+
+void setup(){
+  size(800,500);
+  noStroke();
+}
+
+void draw(){
+  background(0,0,0); 
+  fill(200,200,200);
+  stroke(200);
+  strokeWeight(5);
+  line(width/2, 0, width/2, height);
+  
+  noStroke();
+  fill(255,255,255);
+  ellipse(ballX, ballY, ballSize, ballSize);
+  
+  
+  //ballY = ballY + ballSpeed;
+  
+  if(ballX > width){
+    xToggle = true;
+  }
+  if(ballX < 0){
+    xToggle = false;  
+  }
+  if(ballY > height - ballSize/2){
+    yToggle = true;
+  }
+  if(ballY < ballSize/2){
+    yToggle = false;
+  }  
+    
+    
+  if(xToggle == false){
+    ballX = ballX + ballSpeed;
+  }else{
+    ballX = ballX - ballSpeed; 
+  } 
+  if(yToggle == false){
+    ballY = ballY + ballSpeed;
+  }else{
+    ballY = ballY - ballSpeed;    
+  }  
+
+}

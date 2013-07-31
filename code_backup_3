@@ -1,0 +1,82 @@
+int ballSize = 20;
+float ballX = 0;
+float ballY = 0;
+float ballSpeed = 5;
+boolean xToggle = false;
+boolean yToggle = false;
+Paddle p1 = new Paddle(20);
+
+
+void setup(){
+  size(800,500);
+  noStroke();
+}
+
+void draw(){
+  drawEnvironment();
+  p1.drawPaddle();
+  p1.movePaddle(1);
+  moveBall();
+}
+
+class Paddle{
+  float posX = 0;
+  float posY = 0;
+  int paddleLength = 50;
+  
+  Paddle(float pX){
+   posX = pX;
+  }
+  
+  void drawPaddle(){
+    stroke(255);
+    strokeWeight(10);
+    line(posX, posY, posX, posY + paddleLength); 
+  }
+  
+  void movePaddle(float pY ){
+    if( (posY + pY) > 0 && (posY + pY) < height - paddleLength){
+      posY = posY + pY;
+  }
+ } 
+}
+
+void drawEnvironment(){
+  background(0,0,0); 
+  fill(200,200,200);
+  stroke(200);
+  strokeWeight(5);
+  line(width/2, 0, width/2, height);
+  
+  noStroke();
+  fill(255,255,255);
+  ellipse(ballX, ballY, ballSize, ballSize);
+}
+
+void moveBall(){
+   if(ballX > width){
+    xToggle = true;
+  }
+  if(ballX < 0){
+    xToggle = false;  
+  }
+  if(ballY > height - ballSize/2){
+    yToggle = true;
+  }
+  if(ballY < ballSize/2){
+    yToggle = false;
+  }  
+    
+  if(xToggle == false){
+    ballX = ballX + ballSpeed;
+  }else{
+    ballX = ballX - ballSpeed; 
+  } 
+  if(yToggle == false){
+    ballY = ballY + ballSpeed;
+  }else{
+    ballY = ballY - ballSpeed;    
+  }  
+  
+  
+}
